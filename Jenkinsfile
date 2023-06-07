@@ -16,12 +16,12 @@ pipeline {
                     git config --global user.email "villalobos.axel@yahoo.es"
                     git config --global user.name "AxelAV95"
                     git checkout -b testing                    
-                    "C:/git-ftp-1.6.0/git-ftp.bat" push --syncroot . --user ftptest --passwd admin ftp://192.168.100.252/
+                    "C:/git-ftp-1.6.0/git-ftp" push --syncroot . --user ftptest --passwd admin ftp://192.168.100.252/
                     echo "new content" >> index.txt
                     git add index.txt
                     git commit -m "Add new content"
-                    git push --set-upstream origin testing
-                    "C:/git-ftp-1.6.0/git-ftp.bat" push --syncroot . --user ftptest --passwd admin ftp://192.168.100.252/
+                    git push
+                    "C:/git-ftp-1.6.0/git-ftp" push --syncroot . --user ftptest --passwd admin ftp://192.168.100.252/
 
                 '''
             }
