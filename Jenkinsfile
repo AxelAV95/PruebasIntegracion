@@ -16,17 +16,15 @@ pipeline {
                     git config --global user.email "villalobos.axel@yahoo.es"
                     git config --global user.name "AxelAV95"
                     git checkout -b testing
-                    git config git-ftp.url "ftp://192.168.100.252"
-                    git config git-ftp.user "ftptest"
-                    git config git-ftp.password "admin"
-                    git ftp push
-                    git ftp init
+                    "C:/git-ftp-1.6.0/git-ftp" push
+                    "C:/git-ftp-1.6.0/git-ftp" init
                     echo "new content" >> index.txt
                     git commit index.txt -m "Add new content"
-                    git push
-                    git ftp push
+                    git push --set-upstream origin new-branch-name
+                    "C:/git-ftp-1.6.0/git-ftp" push
                 '''
             }
         }
+
     }
 }
