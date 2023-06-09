@@ -14,6 +14,11 @@ pipeline {
             steps {
                 bat '''
                     git status
+                    git branch
+                    git checkout main
+                    git branch
+                    git checkout Dev
+                    git branch
                 '''
             }
         }
