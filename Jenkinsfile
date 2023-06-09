@@ -30,7 +30,7 @@ pipeline {
         	}
 		success{
 		echo "Enviando correo exito"
-			mail(to:'villalobos.axel@yahoo.es',subject:'Testing',body:'Termino exitosamente.');
+			mail(to:'villalobos.axel@yahoo.es, adriortiz0333@gmail.com, azofeifamelanysofia@gmail.com',subject:'Testing',body:'Termino exitosamente.');
 			emailext body: 'Prueba de SAF2 integracion continua exitosa', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Prueba de SAF2 integracion continua exitosa'
 		    emailext (
                 subject: 'Alerta de actualizacion gitlab', 
@@ -42,7 +42,7 @@ pipeline {
 		}
 		failure{
 			echo "Enviando correo error"
-			mail(to:'villalobos.axel@yahoo.es',subject:'Testing',body:'Fallo el test.');
+			mail(to:'villalobos.axel@yahoo.es, adriortiz0333@gmail.com, azofeifamelanysofia@gmail.com',subject:'Testing',body:'Fallo el test.');
 			emailext body: 'Prueba de SAF2 integracion continua fallo', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Prueba de SAF2 integracion continua fallo'
             emailext (
                     subject: 'Alerta de actualizacion gitlab', 
