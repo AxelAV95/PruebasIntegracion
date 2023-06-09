@@ -9,6 +9,14 @@ pipeline {
                 '''
             }
         }
+        
+        stage('Test git') {
+            steps {
+                bat '''
+                    git status
+                '''
+            }
+        }
  
     }
 }
