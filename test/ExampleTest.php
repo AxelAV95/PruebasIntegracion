@@ -15,7 +15,7 @@
         public function testInsertar(){
             $model = new Model();
             
-            $this -> assertEquals(2, $cd -> $model->sumar(1,1));
+            $this -> assertEquals(2, $model->sumar(1,1));
         }
     }
 
