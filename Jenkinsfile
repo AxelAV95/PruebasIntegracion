@@ -14,7 +14,7 @@ pipeline {
             		}
         	}
 		
-		stage('Pruebas Unitarias) {
+		stage('Pruebas Unitarias') {
             		steps {
                 		echo "Ejecutando pruebas..."
 				 bat '''
