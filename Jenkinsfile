@@ -18,7 +18,7 @@ pipeline {
             		steps {
                 		echo "Ejecutando pruebas..."
 				 bat '''
-
+						 php ./phpunit.phar ./test
                 		'''
 				
             		}
