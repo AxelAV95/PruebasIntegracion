@@ -20,7 +20,7 @@ pipeline {
             		steps {
                 		echo "Ejecutando pruebas..."
 				 bat '''
-						 php ./phpunit.phar ./test
+						 php ./phpunit.phar --bootstrap ./model/model.php ./test
                 		'''
 				
             		}
