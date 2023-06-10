@@ -1,55 +1,76 @@
 pipeline {
-    agent any
+	agent any
+    	stages {
 
-    stages {
-        stage('Test Python') {
-            steps {
-                bat '''
-                    "C:/Users/AxelAV/AppData/Local/Programs/Python/Python311/python.exe" -m pytest sesion.py
-                '''
-            }
-        }
-        
-         stage('Test git') {
-            steps {
-                bat '''
-                    git status
-                    git branch
-                    git checkout main
-                    git branch
-                    git checkout Dev
-                    git branch
-                '''
-            }
-        } 
+		stage('Actualizando repositorio local') {
+            		steps {
+                		 bat '''
+                    			git status
+                    			git add .
+					git commit -m "Actualizando repositorio"
+
+                		'''
+				
+            		}
+        	}
+		
+		stage('Pruebas Unitarias) {
+            		steps {
+                		echo "Ejecutando pruebas..."
+				 bat '''
+
+                		'''
+				
+            		}
+        	}
+				
+
+        	stage('Pruebas de Selenium') {
+            		steps {
+                		echo "Ejecutando pruebas..."
+				 bat '''
+
+                		'''
+				
+            		}
+        	}
+
+		
     }
-    
-     post {
+    post {
         	always {
             		echo "Termino el test"
         	}
 		success{
-		echo "Enviando correo exito"
-			//mail(to:'villalobos.axel@yahoo.es',subject:'Testing',body:'Termino exitosamente.');
-			//mail(to:'adriortiz0333@gmail.com',subject:'Testing',body:'Termino exitosamente.');
-			//mail(to:'azofeifamelanysofia@gmail.com',subject:'Testing',body:'Termino exitosamente.');
 			
-		  
+			echo "Enviando correo de caso exitoso"
+			mail(to:'adriortiz0333@gmail.com',subject:'Testing - Integración continua',body:'Integracion continua ha superado las pruebas.');
+			mail(to:'azofeifamelanysofia@gmail.com',subject:'Testing - Integración continua',body:'Integracion continua ha superado las pruebas.');
+
+			echo "Aplicando Merge"
 			
+                	bat '''
+                    		git checkout main
+                    		git merge Dev
+
+                	'''
+
+			echo "Subiendo a FTP"
 
 			
+                	bat '''                    		
+
+                	'''
+			
+						
 		}
+		   			
 		failure{
-			echo "Enviando correo error"
-			//mail(to:'villalobos.axel@yahoo.es, adriortiz0333@gmail.com, azofeifamelanysofia@gmail.com',subject:'Testing',body:'Fallo el test.');
-			//emailext body: 'Prueba de SAF2 integracion continua fallo', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Prueba de SAF2 integracion continua fallo'
-          /*  emailext (
-                    subject: 'Alerta de actualizacion gitlab', 
-                    mimeType: 'text/html', 
-                    to: 'EMAIL',
-                    recipientProviders: [[$class: 'CulpritsRecipientProvider'],[$class: 'RequesterRecipientProvider']], 
-                    body: 'Integracion continua no ha superado las pruebas'
-                )*/
+			echo "Enviando correo de fallos"			
+			mail(to:'adriortiz0333@gmail.com',subject:'Testing - Integración continua',body:'Integracion continua no ha superado las pruebas.');
+			mail(to:'azofeifamelanysofia@gmail.com',subject:'Testing - Integración continua',body:'Integracion continua no ha superado las pruebas.');
+						
 		}
 	}
+	 
 }
